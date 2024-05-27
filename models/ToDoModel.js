@@ -5,6 +5,14 @@ const todoSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  date: {
+    type: Date,
+    default: Date.now
+  },
+  isCompleted: {
+    type: Boolean,
+    default: false
+  }
 });
 
 module.exports = mongoose.model("ToDo", todoSchema);
