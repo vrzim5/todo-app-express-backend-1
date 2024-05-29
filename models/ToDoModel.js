@@ -1,18 +1,20 @@
 const mongoose = require("mongoose");
 
-const todoSchema = new mongoose.Schema({
+const ToDoSchema = new mongoose.Schema({
   text: {
     type: String,
     required: true,
   },
-  date: {
+  data: {
     type: Date,
-    default: Date.now
+    default: Date.now, // adiciona a data e hora atuais por padrão
   },
-  isCompleted: {
-    type: Boolean,
-    default: false
-  }
+  prazo: {
+    type: Date,
+    required: false, // vai adicionar a data e a hora do input
+  },
 });
 
-module.exports = mongoose.model("ToDo", todoSchema);
+const ToDoModel = mongoose.model("ToDo", ToDoSchema);
+
+module.exports = ToDoModel;
