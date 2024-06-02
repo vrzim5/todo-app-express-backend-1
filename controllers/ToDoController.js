@@ -6,20 +6,20 @@ module.exports.getToDo = async (req, res) => {
 };
 
 module.exports.saveToDo = async (req, res) => {
-  const { text } = req.body;
+  const { text, prazo } = req.body;
 
-  ToDoModel.create({ text }).then((data) => {
-    console.log("Data has been saved to the database...");
+  ToDoModel.create({ text, prazo }).then((data) => {
+    console.log("Os dados foram salvos no database...");
     console.log(data);
     res.send(data);
   });
 };
 
 module.exports.updateToDo = async (req, res) => {
-  const { _id, text } = req.body;
-  ToDoModel.findByIdAndUpdate(_id, { text })
+  const { _id, text, completo,} = req.body;
+  ToDoModel.findByIdAndUpdate(_id, { text, completo: true, },)
     .then(() => {
-      res.send("Data has been updated...");
+      res.send("Os dados foram atualizados...");
     })
     .catch((err) => {
       console.log(err);
@@ -30,9 +30,10 @@ module.exports.deleteToDo = async (req, res) => {
   const { _id } = req.body;
   ToDoModel.findByIdAndDelete(_id)
     .then(() => {
-      res.send("Data has been deleted...");
+      res.send("Os dados foram deletados...");
     })
     .catch((err) => {
       console.log(err);
     });
 };
+
